@@ -1,0 +1,14 @@
+### Update an existing patient
+PUT http://localhost:4000/patients/1fed58db-6034-40d9-8073-a76d68479a67
+Content-Type: application/json
+
+{
+  "name": "Vijaya Dhamale",
+  "email": "vijaya_updated@gmail.com",
+  "address": "33613 Florida, Tampa",
+  "dateOfBirth": "2000-02-11",
+  "registeredDate": "2020-01-01"
+
+}
+
+###
