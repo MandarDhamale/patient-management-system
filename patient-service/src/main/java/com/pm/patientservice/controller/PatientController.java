@@ -3,6 +3,7 @@ package com.pm.patientservice.controller;
 import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.dto.validators.CreatePatientValidationGroup;
+import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.service.PatientService;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
@@ -39,6 +40,14 @@ public class PatientController {
         PatientResponseDTO patientResponseDTO = patientService.updatePatient(id, patientRequestDTO);
         return ResponseEntity.ok().body(patientResponseDTO);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePatient(@PathVariable UUID id){
+        Patient deletedPatient = patientService.getById(id);
+        patientService.deletePatientById(id);
+        System.out.println("LOG: Patient with name + " + deletedPatient.getName() + " and " + " ID " + deletedPatient.getId() + " deleted successfully");
+        return ResponseEntity.noContent().build();
     }
 
  }
