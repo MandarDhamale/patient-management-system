@@ -1,0 +1,20 @@
+syntax = "proto3"; // version of proto we are using
+
+option java_multiple_files = true; // split the response-request generation code into different files
+option java_package = "billing"; // package all the code under the name billing (easy for us to reuse later)
+
+service BillingService{ // patient-service is going to call the BillingService method: CreateBillingAccount
+  rpc CreateBillingAccount(BillingRequest) returns (BillingResponse);
+}
+
+// similar to DTO in our patient-service
+message BillingRequest{
+  string patientId = 1; // not hard-coding; serialization and deserialization
+  string name = 2;
+  string email = 3; // each number need to be unique
+}
+
+message BillingResponse{
+  string accountId = 1;
+  string status = 2;
+}
