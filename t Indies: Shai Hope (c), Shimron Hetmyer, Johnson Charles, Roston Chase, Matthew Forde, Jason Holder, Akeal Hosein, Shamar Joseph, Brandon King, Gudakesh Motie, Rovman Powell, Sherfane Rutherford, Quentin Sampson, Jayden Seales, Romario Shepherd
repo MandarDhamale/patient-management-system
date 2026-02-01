@@ -1,0 +1,143 @@
+[33mcommit 353f87f1193c924d260b4c2c04b7566fe7395dee[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sun Feb 1 00:27:01 2026 -0500
+
+     analytics service grpc setup
+
+[33mcommit 673fe9d87110be5f2a14219b9432ea9ae35ca966[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sat Jan 31 23:55:53 2026 -0500
+
+    analytics service
+
+[33mcommit ca76f7779ee89157a6088077912b4e7777e97394[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 30 20:38:38 2026 -0500
+
+    kafka producer impl
+
+[33mcommit cf8310908f44b1e25b4e2cb4925d8af24e13ccec[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 30 01:22:35 2026 -0500
+
+    Kafka Producer setup
+
+[33mcommit 0f914a085cadea1853aab4595c16588763b05865[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Wed Jan 28 22:55:40 2026 -0500
+
+    kafka setup
+
+[33mcommit e8653a15f50fda43c9aaa1e479194f8c7262fb37[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Mon Jan 26 01:35:47 2026 -0500
+
+    kafka setup
+
+[33mcommit 495ffc9d96201c4cc145520e0ea920ea1b29c829[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sat Jan 24 17:05:54 2026 -0500
+
+    grpc client setup
+
+[33mcommit ff2f2f4e286a3f4f0d03b8e5668e8ca78c356d08[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 23 22:27:46 2026 -0500
+
+    grpc client setup
+
+[33mcommit 2b5647a395292da383f6bb16a672b722e293487a[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 23 00:04:01 2026 -0500
+
+    dockerise billing-service
+
+[33mcommit 4f1484ece58711e41a7b4bea2a38d81f057cc2b6[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Thu Jan 22 23:32:17 2026 -0500
+
+    grpc server request test
+
+[33mcommit 515c909380382d468b6a4b650211c80373d4a7f8[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Thu Jan 22 23:17:23 2026 -0500
+
+    grpc server port def
+
+[33mcommit 073993ae787fa378aa43ad45e778f52249fbf9c0[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sat Jan 17 20:48:27 2026 -0500
+
+    typo in createBillingAccount method
+
+[33mcommit 275cf300164813b863c27c09738b9d33fae3f389[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sat Jan 17 20:46:59 2026 -0500
+
+    grpc billing account implementation
+
+[33mcommit ba4629895aa873bb6ea8935c56260f03aa6f6fec[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Wed Jan 14 21:58:57 2026 -0500
+
+    grpc billing service
+
+[33mcommit 4f257c9c951a36f11e267364c3edeae598fcc92d[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Mon Jan 12 22:26:51 2026 -0500
+
+    proto file for billing service
+
+[33mcommit f8d0bd5fee122b6727e454afdce87828a2bd2327[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 9 22:35:56 2026 -0500
+
+    feat: proto setup
+
+[33mcommit b27f52c3abf23fb8e609ec0f09e6a5570a03fcee[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 9 22:00:20 2026 -0500
+
+    grpc setup
+
+[33mcommit 85962c45f492e6b7176f28a3f11573290c82233b[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Thu Jan 8 18:11:52 2026 -0500
+
+    FEAT: Docker file/images for patient-service and patient-service-db
+
+[33mcommit b2db64a037ff9c78e3aa424eb3f4de160e3f823a[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sat Jan 3 22:52:29 2026 -0500
+
+    BUG FIX: Swagger UI fix
+
+[33mcommit e825e500a9427b3b202fdee392aa13e323829be8[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Fri Jan 2 22:50:59 2026 -0500
+
+    BUG FIX: Build error after adding the dependency for Open-API docs
+
+[33mcommit 4f1daf466d8b138bc651a69b885a47ea80ee54e5[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Thu Jan 1 18:02:04 2026 -0500
+
+    delete patient endpoint
+
+[33mcommit eace7e8a86bbfa87f408ce39cd94f2b04d95f207[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sun Dec 28 17:48:02 2025 -0500
+
+    patient create and update validation
+
+[33mcommit 2af3f9b3a912ba226731f01563d1d381554fa4ae[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Sun Dec 14 21:49:28 2025 -0500
+
+    sync changes
+
+[33mcommit 593305b41d579e83261d7fc79f113377710e82d6[m
+Author: Mandar Dhamale <mandardhamale@gmail.com>
+Date:   Wed Nov 19 22:20:24 2025 -0500
+
+    initial commit
