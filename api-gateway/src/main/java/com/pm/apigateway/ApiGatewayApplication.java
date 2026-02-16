@@ -8,7 +8,7 @@ public class ApiGatewayApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayApplication.class, args);
-        System.out.println("Application up and running...");
+        System.out.println("API gateway up and running...");
     }
 
 }
