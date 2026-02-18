@@ -6,7 +6,6 @@ import com.pm.authservice.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +16,9 @@ import java.util.Optional;
 public class AuthController  {
 
     private final AuthService authService;
-    private final PasswordEncoder passwordEncoder;
 
-    public AuthController(AuthService authService, PasswordEncoder passwordEncoder){
+    public AuthController(AuthService authService){
         this.authService = authService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Operation(summary = "Generate token on user login")
