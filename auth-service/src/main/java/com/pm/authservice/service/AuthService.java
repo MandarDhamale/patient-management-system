@@ -1,0 +1,25 @@
+package com.pm.authservice.service;
+
+import com.pm.authservice.dto.LoginRequestDTO;
+import com.pm.authservice.model.User;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class AuthService {
+
+    private final UserService userService;
+
+    public AuthService(UserService userService){
+        this.userService = userService;
+    }
+
+    public Optional<String> authenticate(LoginRequestDTO loginRequestDTO){
+        // why we do not call the UserRepository directly? => It makes the code more extensible, less refactoring, future changes to service layer, will be reflected in all the places where the userService is being used.
+        Optional<String> token = userService.findByEmail(loginRequestDTO.getEmail())
+                .filter(u -> passwordEncoder.matches(loginRequestDTO.getPassword(), u.getPassword()))
+                .map(u -> jwtUtil.generateToken(u.getEmail(), u.getRole()));
+        return token;
+    }
+}
