@@ -1,10 +1,14 @@
 package com.pm.authservice.util;
 
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Base64;
@@ -28,8 +32,23 @@ public class JWTUtil {
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
                 .signWith(secretKey) // secret key that we will be having
-                .compact(); // take all the prop. create a string and sign with secret key (basically encrypt) and compact will a create a string with
+                .compact(); // take all the prop. create a string and sign with secret key (basically encrypt) and compact and will a create a string with
                 // all the information
     }
+
+    public void validateToken(String token){
+        try {
+            Jwts.parser().verifyWith((SecretKey) secretKey) // verify the signature with the secret key
+                    .build().parseSignedClaims(token); // verify with the secret key if the token is valid and given by our server
+        } catch (SignatureException e) {
+            throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e){
+            throw new JwtException("Invalid JWT ");
+        }
+    }
+
+
+
+
 
 }
