@@ -13,6 +13,19 @@ server:
 #            - Path=/api/patients,/api/patients/**
 #          filters:
 #            - StripPrefix=1
+
+    # testing the authentication service in api-gateway
+
+    # Route for /api/patients/** to patient-service
+    #        - id: auth-service-route
+    #          uri: http://auth-service:4005
+    #          predicates:
+    #            - Path=/auth/**
+    #          filters:
+  #            - StripPrefix=1
+
+
+
 #
 #        # Route for /api/docs/patients to patient-service /v3/api-docs
 #        - id: api-docs-patient-route

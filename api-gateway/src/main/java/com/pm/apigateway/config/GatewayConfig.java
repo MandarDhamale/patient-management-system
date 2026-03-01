@@ -20,6 +20,9 @@ public class GatewayConfig {
                 .route("api-docs-auth-route", r -> r.path("/api-docs/auth")
                         .filters(f -> f.rewritePath("/api-docs/auth", "/v3/api-docs"))
                         .uri("http://auth-service:4005"))
+                .route("auth-service-route", r -> r.path("/auth/**")
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("http://auth-service:4005"))
                 .build();
     }
 }
