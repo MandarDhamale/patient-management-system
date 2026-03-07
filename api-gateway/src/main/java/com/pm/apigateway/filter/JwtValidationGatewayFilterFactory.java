@@ -8,45 +8,57 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Component // this tells spring that this class is a spring bean and we want to manage it in the spring lifecycle
-public class JwtValidationGatewayFilterFactory extends AbstractGatewayFilterFactory<Object> { // filter class - custom class to intercept requests and do some processing
+@Component
+public class JwtValidationGatewayFilterFactory extends AbstractGatewayFilterFactory<JwtValidationGatewayFilterFactory.Config> {
 
-    private final WebClient webClient; // this will be used to make requests to our auth service
+    private final WebClient webClient;
 
-    // constructor for our validationfilterfactory class
-    public JwtValidationGatewayFilterFactory(WebClient.Builder webClientBuilder, @Value("${auth.service.url}") String authServiceUrl){
-        this.webClient = webClientBuilder.baseUrl(authServiceUrl).build();
+    // FIX: Removed WebClient.Builder from the parameters.
+    // Spring will now only inject the authServiceUrl string.
+    public JwtValidationGatewayFilterFactory(@Value("${auth.service.url}") String authServiceUrl){
+        super(Config.class);
+
+        // FIX: Instantiate the WebClient directly without relying on Spring's dependency injection
+        this.webClient = WebClient.create(authServiceUrl);
     }
 
-    // filter will be automatically applied to all the requests
     @Override
-    public GatewayFilter apply(Object config){
-       return (exchange, chain) -> {
-           String token = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+    public GatewayFilter apply(Config config){
+        return (exchange, chain) -> {
 
-           // token logic here
-           if(token != null || !token.startsWith("Bearer ")){
-               // check if the token is valid before proceeding to the next steps
-               exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-               return exchange.getResponse().setComplete();
-           }
+            System.out.println("\n====== 1. GATEWAY FILTER TRIGGERED ======");
+            System.out.println("Target URI: " + exchange.getRequest().getURI().getPath());
 
-           return webClient.get()
-                   .uri("/validate")
-                   .header(HttpHeaders.AUTHORIZATION, token) // set the token for the request
-                   .retrieve() // retrive the response
-                   .toBodilessEntity()// no body
-                   .then(chain.filter(exchange)); // proceed further with request, filter has finished processing the request and can continue with next steps in the request or apply some other filter if present and required
+            String token = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+            System.out.println("Extracted Token Header: [" + token + "]");
 
+            if(token == null || !token.startsWith("Bearer ")){
+                System.out.println("====== 2. FAILED: TOKEN MISSING OR MALFORMED ======");
+                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                return exchange.getResponse().setComplete();
+            }
 
+            System.out.println("====== 3. TOKEN FOUND. CALLING AUTH SERVICE... ======");
 
-       };
+            return webClient.get()
+                    .uri("/validate")
+                    .header(HttpHeaders.AUTHORIZATION, token)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> {
+                        System.out.println("====== 4. AUTH SERVICE APPROVED! FORWARDING TO PATIENT SERVICE ====== \n");
+                        return chain.filter(exchange);
+                    })
+                    .onErrorResume(error -> {
+                        System.out.println("====== 4. FAILED: AUTH SERVICE REJECTED THE TOKEN ======");
+                        System.out.println("Reason: " + error.getMessage());
+                        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                        return exchange.getResponse().setComplete();
+                    });
+        };
     }
 
-
-
-
-
-
-
+    public static class Config{
+        // Empty configuration class required by AbstractGatewayFilterFactory
+    }
 }
