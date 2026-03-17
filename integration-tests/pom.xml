@@ -17,7 +17,8 @@
     <dependencies>
         <dependency>
             <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured-bom</artifactId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -27,6 +28,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>
